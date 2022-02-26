@@ -13,10 +13,10 @@
   };
 </script>
 
-{Meteor.userId()}
-
-<div class="container">
-  <button on:click={Meteor.logout}>Logout</button>
+<div class="bg-base-100 h-full w-full flex flex-col">
+  <div class="flex justify-end p-4 bg-base-200">
+    <button class="btn btn-ghost" on:click={Meteor.logout}>Logout</button>
+  </div>
   <Route path="/login">
     <Login />
   </Route>
