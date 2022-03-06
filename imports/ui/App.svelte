@@ -1,22 +1,34 @@
 <script>
+  // called only once
   import { Route, router } from "tinro";
   import Login from "./components/pages/Login.svelte";
+  import Home from "./components/pages/Home.svelte";
+  import { Accounts } from "meteor/accounts-base";
 
-  let counter = 0;
+  let isLogedIn = Meteor.userId();
+  Accounts.onLogin(() => {
+    isLogedIn = true;
+  });
+  Accounts.onLogout(() => {
+    isLogedIn = false;
+  });
 
-  if (!Meteor.userId()) {
-    router.goto("/login");
+  // reactive
+  $: {
+    if (!isLogedIn) {
+      router.goto("/login");
+    }
   }
-
-  const addToCounter = () => {
-    counter += 1;
-  };
 </script>
 
 <div class="bg-base-100 h-full w-full flex flex-col">
   <div class="flex justify-end p-4 bg-base-200">
-    <button class="btn btn-ghost" on:click={Meteor.logout}>Logout</button>
+    {#if isLogedIn}
+      <button class="btn btn-ghost" on:click={Meteor.logout}>Logout</button>
+    {/if}
   </div>
+  <Route path="/"><Home /></Route>
+
   <Route path="/login">
     <Login />
   </Route>
