@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import {MediaCollection} from '/imports/api/MediaCollection'
+import { MediaCollection } from '/imports/api/MediaCollection';
 
 
 
@@ -10,3 +10,10 @@ Meteor.startup(() => {
   });
 
 });
+
+Meteor.methods({
+  saveMedia: function (media) {
+    console.log( 'hello world', media);
+    MediaCollection.insert(media);
+  }
+})
