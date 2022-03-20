@@ -1,10 +1,11 @@
 <script>
   import { Accounts } from "meteor/accounts-base";
   import { router } from "tinro";
+  import Modal from "../atoms/Modal.svelte";
 
   let email = "";
   let password = "";
-
+  let modalTitle = "E-mail not found";
   let showModal = false;
 
   const handleModalCancel = () => {
@@ -35,27 +36,20 @@
   };
 </script>
 
-<div
-  for="my-modal-4"
-  class="modal cursor-pointer {showModal ? 'modal-open' : ''}"
->
-  <div class="modal-box relative" for="">
-    <h3 class="text-lg font-bold">E-mail not found</h3>
-    <p class="py-4">
-      This user does not exist. Do you want to create a new user using this
-      e-mail address?
-    </p>
-
-    <div class="flex justify-end space-x-2">
-      <button class="btn btn-outline" on:click={handleModalCancel}>
-        Cancel
-      </button>
-      <button class="btn btn-primary" on:click={handleRegister}>
-        Create User
-      </button>
-    </div>
+<Modal show={showModal} title={modalTitle}>
+  <p class="py-4">
+    This user does not exist. Do you want to create a new user using this e-mail
+    address?
+  </p>
+  <div class="flex justify-end space-x-2">
+    <button class="btn btn-outline" on:click={handleModalCancel}>
+      Cancel
+    </button>
+    <button class="btn btn-primary" on:click={handleRegister}>
+      Create User
+    </button>
   </div>
-</div>
+</Modal>
 
 <div class="inline-flex flex-col gap-4 self-center w-80 mt-8">
   <input

@@ -1,48 +1,63 @@
 <script>
   import { Mongo } from "meteor/mongo";
   import { MediaCollection } from "../../../api/MediaCollection";
-  import { Meteor }from 'meteor/meteor';
-  import { Tracker } from 'meteor/tracker'
+  import { Meteor } from "meteor/meteor";
+  import { Tracker } from "meteor/tracker";
+  import Modal from "../atoms/Modal.svelte";
 
   console.log(MediaCollection.find({}).fetch());
 
   let medias = [];
-  let title = '';
-  let author = '';
-  let description = '';
+  let title = "";
+  let author = "";
+  let description = "";
+  let showAddMedia = false;
 
   const handleSubmit = () => {
-    Meteor.call('saveMedia', {title, author, description});
+    Meteor.call("saveMedia", { title, author, description });
+  };
+  const handleAddMedia = () => {
+    showAddMedia = true;
   };
 
-  Tracker.autorun(function(){
+  Tracker.autorun(function () {
     medias = MediaCollection.find({}).fetch();
-  })
-
+  });
 </script>
 
-<form on:submit|preventDefault = {handleSubmit}>
-  <div class="form-control w-full max-w-xs">
-    <label for="title" class="label label-text">
-      Title
-    </label>
-    <input id="title" type="text" class="input input-bordered w-full max-w-xs" bind:value={title}>
-  </div>
-  <div class="form-control w-full max-w-xs">
-    <label for="author" class="label label-text">
-      Author
-    </label>
-    <input id="author" type="text" class="input input-bordered w-full max-w-xs" bind:value={author}>
-  </div>
-  <div class="form-control w-full max-w-xs">
-    <label for="description" class="label label-text">
-      Description
-    </label>
-    <textarea  id="description" class="textarea textarea-bordered resize-none" bind:value={description}></textarea>
-  </div>
-  <button class="btn" type="submit">Save</button>
-</form>
-
+<Modal title="Add media" bind:show={showAddMedia} let:close={closeModal}>
+  <form on:submit|preventDefault={handleSubmit}>
+    <div class="form-control w-full max-w-xs">
+      <label for="title" class="label label-text"> Title </label>
+      <input
+        id="title"
+        type="text"
+        class="input input-bordered w-full max-w-xs"
+        bind:value={title}
+      />
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <label for="author" class="label label-text"> Author </label>
+      <input
+        id="author"
+        type="text"
+        class="input input-bordered w-full max-w-xs"
+        bind:value={author}
+      />
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <label for="description" class="label label-text"> Description </label>
+      <textarea
+        id="description"
+        class="textarea textarea-bordered resize-none"
+        bind:value={description}
+      />
+    </div>
+    <button class="btn" type="submit">Save</button>
+    <button class="btn" on:click={closeModal}>Cancel</button>
+  </form>
+</Modal>
+<button class="btn" on:click={handleAddMedia}>Add Media</button>
 <div>
   {#each medias as { title, author, description }}
     {title}
