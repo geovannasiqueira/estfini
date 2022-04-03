@@ -21,15 +21,17 @@
   }
 </script>
 
-<div class="bg-base-100 h-full w-full flex flex-col">
-  <div class="flex justify-end p-4 bg-base-200">
+<div class="bg-base-100 h-full w-full grid grid-cols-12 gap-2 auto-rows-max">
+  <div class="flex justify-end p-4 bg-base-200 col-span-full self-start">
     {#if isLogedIn}
       <button class="btn btn-ghost" on:click={Meteor.logout}>Logout</button>
     {/if}
   </div>
-  <Route path="/"><Home /></Route>
+  <div class="col-start-4 col-span-6 grid grid-cols-2 gap-2">
+    <Route path="/"><Home /></Route>
 
-  <Route path="/login">
-    <Login />
-  </Route>
+    <Route path="/login">
+      <Login />
+    </Route>
+  </div>
 </div>

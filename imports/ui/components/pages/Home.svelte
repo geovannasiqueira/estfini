@@ -15,6 +15,7 @@
 
   const handleSubmit = () => {
     Meteor.call("saveMedia", { title, author, description });
+    showAddMedia = false;
   };
   const handleAddMedia = () => {
     showAddMedia = true;
@@ -57,11 +58,14 @@
     <button class="btn" on:click={closeModal}>Cancel</button>
   </form>
 </Modal>
-<button class="btn" on:click={handleAddMedia}>Add Media</button>
-<div>
-  {#each medias as { title, author, description }}
+<div class='col-span-full'>
+  <button class="btn" on:click={handleAddMedia}>Add Media</button>
+</div>
+
+{#each medias as { title, author, description }}
+  <div class="card shadow">
     {title}
     {author}
     {description}
-  {/each}
-</div>
+  </div>
+{/each}
