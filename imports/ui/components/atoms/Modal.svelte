@@ -1,10 +1,17 @@
 <script>
   export let show = false;
   export let title = "Title";
+
   const close = () => {
     show = false;
   };
+
+  const open = () => {
+    show = true;
+  };
 </script>
+
+<slot name="outside" {open}></slot>
 
 <div
   for="my-modal-4"
@@ -14,6 +21,6 @@
 >
   <div class="modal-box relative" on:click|stopPropagation>
     <h3 class="text-lg font-bold">{title}</h3>
-    <slot {close} />
+    <slot {close}/>
   </div>
 </div>

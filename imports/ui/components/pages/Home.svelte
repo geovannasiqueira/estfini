@@ -11,14 +11,9 @@
   let title = "";
   let author = "";
   let description = "";
-  let showAddMedia = false;
 
   const handleSubmit = () => {
     Meteor.call("saveMedia", { title, author, description });
-    showAddMedia = false;
-  };
-  const handleAddMedia = () => {
-    showAddMedia = true;
   };
 
   Tracker.autorun(function () {
@@ -26,7 +21,13 @@
   });
 </script>
 
-<Modal title="Add media" bind:show={showAddMedia} let:close={closeModal}>
+<Modal
+  title="Add media"
+  let:close={closeModal}
+  let:open={openModal}
+>
+  <button slot="outside" class="btn col-span-full" on:click={openModal}>Add Media</button>
+
   <form on:submit|preventDefault={handleSubmit}>
     <div class="form-control w-full max-w-xs">
       <label for="title" class="label label-text"> Title </label>
@@ -58,9 +59,6 @@
     <button class="btn" on:click={closeModal}>Cancel</button>
   </form>
 </Modal>
-<div class='col-span-full'>
-  <button class="btn" on:click={handleAddMedia}>Add Media</button>
-</div>
 
 {#each medias as { title, author, description }}
   <div class="card shadow">
