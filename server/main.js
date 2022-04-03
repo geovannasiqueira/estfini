@@ -14,6 +14,6 @@ Meteor.startup(() => {
 Meteor.methods({
   saveMedia: function (media) {
     console.log( 'hello world', media);
-    MediaCollection.insert(media);
+    return MediaCollection.insert(media);
   }
 })

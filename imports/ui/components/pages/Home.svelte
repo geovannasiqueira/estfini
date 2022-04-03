@@ -4,6 +4,7 @@
   import { Meteor } from "meteor/meteor";
   import { Tracker } from "meteor/tracker";
   import Modal from "../atoms/Modal.svelte";
+  import MediaCard from "../atoms/MediaCard.svelte";
 
   console.log(MediaCollection.find({}).fetch());
 
@@ -12,8 +13,24 @@
   let author = "";
   let description = "";
 
+  $: {
+    console.log("title", title);
+  }
+
   const handleSubmit = () => {
-    Meteor.call("saveMedia", { title, author, description });
+    Meteor.call(
+      "saveMedia",
+      { title, author, description },
+      (error, result) => {
+        title = "";
+        author = "";
+        description = "";
+
+        if (error) {
+          //TODO: Do something if error
+        }
+      }
+    );
   };
 
   Tracker.autorun(function () {
@@ -21,49 +38,54 @@
   });
 </script>
 
-<Modal
-  title="Add media"
-  let:close={closeModal}
-  let:open={openModal}
->
-  <button slot="outside" class="btn col-span-full" on:click={openModal}>Add Media</button>
+<Modal title="Add media" let:close={closeModal} let:open={openModal}>
+  <button class="btn col-start-2 btn-primary btn-sm justify-self-end" slot="outside" on:click={openModal}>
+    Add Media
+  </button>
 
-  <form on:submit|preventDefault={handleSubmit}>
-    <div class="form-control w-full max-w-xs">
-      <label for="title" class="label label-text"> Title </label>
+  <form
+    class="space-y-4 flex flex-col items-stretch"
+    on:submit|preventDefault={handleSubmit}
+  >
+    <div class="form-control w-full">
+      <label for="title" class="label label-text uppercase font-bold">
+        Title
+      </label>
       <input
         id="title"
         type="text"
-        class="input input-bordered w-full max-w-xs"
+        class="input input-bordered w-full"
         bind:value={title}
       />
     </div>
-    <div class="form-control w-full max-w-xs">
-      <label for="author" class="label label-text"> Author </label>
+    <div class="form-control w-full">
+      <label for="author" class="label label-text uppercase font-bold">
+        Author
+      </label>
       <input
         id="author"
         type="text"
-        class="input input-bordered w-full max-w-xs"
+        class="input input-bordered w-full"
         bind:value={author}
       />
     </div>
-    <div class="form-control w-full max-w-xs">
-      <label for="description" class="label label-text"> Description </label>
-      <textarea
-        id="description"
-        class="textarea textarea-bordered resize-none"
-        bind:value={description}
-      />
+    <div class="self-end pt-6 space-x-4">
+      <button class="btn btn-outline" type="button" on:click={closeModal}
+        >Cancel</button
+      >
+      <button class="btn btn-primary" type="submit" on:click={closeModal}
+        >Save</button
+      >
     </div>
-    <button class="btn" type="submit">Save</button>
-    <button class="btn" on:click={closeModal}>Cancel</button>
   </form>
 </Modal>
 
-{#each medias as { title, author, description }}
-  <div class="card shadow">
-    {title}
-    {author}
-    {description}
-  </div>
+{#each medias as { title, author }}
+  <MediaCard
+    class="card shadow"
+    media={{
+      title,
+      author,
+    }}
+  />
 {/each}

@@ -20,7 +20,7 @@
   on:click={close}
 >
   <div class="modal-box relative" on:click|stopPropagation>
-    <h3 class="text-lg font-bold">{title}</h3>
+    <h3 class="text-xl font-bold mb-6">{title}</h3>
     <slot {close}/>
   </div>
 </div>
