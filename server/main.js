@@ -1,19 +1,10 @@
-import { Meteor } from 'meteor/meteor';
-import { MediaCollection } from '/imports/api/MediaCollection';
-
-
+import { Meteor } from "meteor/meteor";
+import { MediasCollection } from "/imports/api/MediasCollection";
+import "/imports/api/methods";
 
 Meteor.startup(() => {
-  //console.log(MediaCollection.find({}));
-  Meteor.publish('media', function () {
-    return MediaCollection.find({});
+  //console.log(MediasCollection.find({}));
+  Meteor.publish("media", function () {
+    return MediasCollection.find({});
   });
-
 });
-
-Meteor.methods({
-  saveMedia: function (media) {
-    console.log( 'hello world', media);
-    return MediaCollection.insert(media);
-  }
-})

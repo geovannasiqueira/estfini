@@ -1,45 +1,43 @@
 <script>
   import { Mongo } from "meteor/mongo";
-  import { MediaCollection } from "../../../api/MediaCollection";
+  import { MediasCollection } from "../../../api/MediasCollection";
   import { Meteor } from "meteor/meteor";
   import { Tracker } from "meteor/tracker";
   import Modal from "../atoms/Modal.svelte";
   import MediaCard from "../atoms/MediaCard.svelte";
 
-  console.log(MediaCollection.find({}).fetch());
+  console.log(MediasCollection.find({}).fetch());
 
   let medias = [];
   let title = "";
   let author = "";
-  let description = "";
 
   $: {
     console.log("title", title);
   }
 
   const handleSubmit = () => {
-    Meteor.call(
-      "saveMedia",
-      { title, author, description },
-      (error, result) => {
-        title = "";
-        author = "";
-        description = "";
+    Meteor.call("media.save", { title, author }, (error, result) => {
+      title = "";
+      author = "";
 
-        if (error) {
-          //TODO: Do something if error
-        }
+      if (error) {
+        //TODO: Do something if error
       }
-    );
+    });
   };
 
   Tracker.autorun(function () {
-    medias = MediaCollection.find({}).fetch();
+    medias = MediasCollection.find({}).fetch();
   });
 </script>
 
 <Modal title="Add media" let:close={closeModal} let:open={openModal}>
-  <button class="btn col-start-2 btn-primary btn-sm justify-self-end" slot="outside" on:click={openModal}>
+  <button
+    class="btn col-start-2 btn-primary btn-sm justify-self-end"
+    slot="outside"
+    on:click={openModal}
+  >
     Add Media
   </button>
 
