@@ -1,3 +1,6 @@
+# Security Ignores
+settings.json
+
 # Logs
 logs
 *.log
