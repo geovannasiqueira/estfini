@@ -7,18 +7,29 @@ const MEDIA_STATUS = { ENDED: "Ended" };
 const MIN_MEDIA_AMOUNT = 10;
 
 Meteor.methods({
-  "media.recommend": function (theMovieDbId) {
+  "media.recommend": function (media) {
     if (!this.userId) {
       throw new Meteor.Error("Not authorized.");
     }
-    const mediaId = MediasCollection.insert(
+    MediasCollection.insert(
       { ...media, createdAt: new Date() },
-      (error) => {
-        throw new Meteor.Error("Failed to register media.");
+      (error, createdMediaId) => {
+        const mediaId = createdMediaId
+          || MediasCollection.findOne({ theMovieDbId: media.theMovieDbId })._id;
+
+        UsersRecommendationsCollection.insert({
+          userId: this.userId,
+          mediaId,
+        });
       }
     );
+  },
 
-    return UsersRecommendationsCollection.insert({
+  "media.unrecommend": function (mediaId) {
+    if (!this.userId) {
+      throw new Meteor.Error("Not authorized.");
+    }
+    return UsersRecommendationsCollection.remove({
       userId: this.userId,
       mediaId,
     });
@@ -56,7 +67,7 @@ Meteor.methods({
             });
 
             return {
-              id,
+              theMovieDbId: id,
               status,
               name,
               overview,
