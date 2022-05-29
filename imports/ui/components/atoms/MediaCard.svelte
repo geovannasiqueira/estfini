@@ -13,10 +13,7 @@
     </div>
     <div class="flex flex-col">
       <p>
-        {media.title}
-      </p>
-      <p>
-        {media.author}
+        {media.name}
       </p>
     </div>
   </div>

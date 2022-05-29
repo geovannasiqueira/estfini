@@ -1,0 +1,218 @@
+export const theMovieDbMock = [
+  {
+    theMovieDbId: 1668,
+    status: "Ended",
+    name: "Friends",
+    overview:
+      "Friends is an American television sitcom created by David Crane and Marta Kauffman, which aired on NBC from September 22, 1994, to May 6, 2004, lasting ten seasons. With an ensemble cast starring Jennifer Aniston, Courteney Cox, Lisa Kudrow, Matt LeBlanc, Matthew Perry and David Schwimmer, the show revolves around six friends in their 20s and 30s who live in Manhattan, New York City. The series was produced by Bright/Kauffman/Crane Productions, in association with Warner Bros. Television. The original executive producers were Kevin S. Bright, Kauffman, and Crane.",
+    originalLanguage: "en",
+    releaseDate: "1994-09-22",
+    image: "/f496cm9enuEsZkSPzCwnTESEK5s.jpg",
+  },
+  {
+    theMovieDbId: 4606,
+    status: "Ended",
+    name: "Garfield and Friends",
+    overview:
+      "The animated stories of Garfield the cat, Odie the dog, their owner Jon and the trouble they get into. And also Orson the Pig and his adventures on a farm with his fellow farm animals.",
+    originalLanguage: "en",
+    releaseDate: "1988-09-17",
+    image: "/3HyTfZ9sSCoZPYrYHMffhRVm3Af.jpg",
+  },
+  {
+    theMovieDbId: 4887,
+    status: "Ended",
+    name: "Barney & Friends",
+    overview:
+      "Barney & Friends is an American children's television series aimed at children from ages 2 to 5. The series, which first aired on April 6, 1992, features the title character Barney, a purple anthropomorphic Tyrannosaurus rex who conveys educational messages through songs and small dance routines with a friendly, optimistic attitude.\n\nNew episodes have not been produced since 2009; however reruns continue to air on various PBS stations.",
+    originalLanguage: "en",
+    releaseDate: "1992-04-06",
+    image: "/ijt54PA1pZ2ae68ODBk3vfWSK0e.jpg",
+  },
+  {
+    theMovieDbId: 1720,
+    status: "Ended",
+    name: "Foster's Home for Imaginary Friends",
+    overview:
+      "Children who create imaginary friends usually take care of them until they are 7-8 years old. Imaginary friends, left on their own after this event, continue to live in this home founded by old Madam Foster.",
+    originalLanguage: "en",
+    releaseDate: "2004-08-13",
+    image: "/aerZJVODYwji4BnyWrHFmF3JxhX.jpg",
+  },
+  {
+    theMovieDbId: 936,
+    status: "Ended",
+    name: "Super Friends",
+    overview:
+      "The most powerful heroes ever--Superman, Wonder Woman, Aquaman, Batman and Robin--join forces with teenagers Wendy and Marvin and their dog, Marvel the Wonderdog, to defend justice and guard the innocent.",
+    originalLanguage: "en",
+    releaseDate: "1973-09-08",
+    image: "/5U05cOQ64hpRxhhvGSj3cGTx5zm.jpg",
+  },
+  {
+    theMovieDbId: 1269,
+    status: "Ended",
+    name: "Spider-Man and His Amazing Friends",
+    overview:
+      "Spider-Man and His Amazing Friends is an American animated television series produced by Marvel Productions starring established Marvel Comics characters Spider-Man and Iceman and an original character, Firestar. As a trio called the Spider-Friends, they fought against various villains.",
+    originalLanguage: "en",
+    releaseDate: "1981-09-12",
+    image: "/4GjLlD5u8LtkF5XJ75FlPW16fHG.jpg",
+  },
+  {
+    theMovieDbId: 44333,
+    status: "Ended",
+    name: "Carol Burnett and Friends",
+    overview:
+      "Carol Burnett and Friends was a syndicated, truncated version of The Carol Burnett Show, showing only the sketches.The show star's Carol Burnett and co-star's Tim Conway and Harvey Korman, Carol Burnett's related shows: The Carol Burnett Show Carol Burnett and Company The Carol Burnett Show (1991) Carol & Company",
+    originalLanguage: "en",
+    releaseDate: "1972-10-01",
+    image: null,
+  },
+  {
+    theMovieDbId: 3527,
+    status: "Ended",
+    name: "My Friends Tigger & Pooh",
+    overview:
+      "Pooh, Tigger, and friends from the Hundred Acre Wood welcome new neighbors — an adorable six-year-old girl named Darby and her puppy, Buster. With the help of adventurous super sleuths Tigger and Pooh, every episode revolves around the solving of a mystery and an interactive curriculum that encourages viewers to help them out.",
+    originalLanguage: "en",
+    releaseDate: "2007-05-12",
+    image: "/pjFdWwr36A5ZO8K5W5NuPRS7Bil.jpg",
+  },
+  {
+    theMovieDbId: 99747,
+    status: "Ended",
+    name: "Conversations with Friends",
+    overview:
+      "Two college students, Frances and Bobbi, forge a strange and unexpected relationship with a married couple.",
+    originalLanguage: "en",
+    releaseDate: "2022-05-15",
+    image: "/kk6kXltSgeAA1yWiRaZ1sOexm1V.jpg",
+  },
+  {
+    theMovieDbId: 14042,
+    status: "Ended",
+    name: "Super Friends",
+    overview: "",
+    originalLanguage: "en",
+    releaseDate: "1973-09-08",
+    image: null,
+  },
+  {
+    theMovieDbId: 34901,
+    status: "Ended",
+    name: "Angel's Friends",
+    overview:
+      "Four Angels  and four Devils are sent to Earth, in an unused area of the Golden School, where they learn everything they need to become Guardian Angels and Guardian Devils.",
+    originalLanguage: "it",
+    releaseDate: "2009-10-12",
+    image: "/wjCjDD7QpubVKSkNSMU8BfiOj3U.jpg",
+  },
+  {
+    theMovieDbId: 16846,
+    status: "Ended",
+    name: "Johnson & Friends",
+    overview:
+      "Johnson and Friends is an Australian children’s television programme broadcast on ABC from 12 November 1990 to 25 December 1995. It was produced by Film Australia and lasted seven seasons. In the UK it was shown in the 1993 on TCC, CBBC, and then on UK Living's Tiny Living strand for under-fives. It was aired in the United States as a segment on the Fox Cubhouse, an educational children's program on Fox, from 1993 to 1996.",
+    originalLanguage: "en",
+    releaseDate: "1990-09-03",
+    image: "/4ywm0NhyofRdS25cKrc8EdOnwow.jpg",
+  },
+  {
+    theMovieDbId: 25895,
+    status: "Ended",
+    name: "Super Friends",
+    overview:
+      "Super Friends first aired on ABC on September 8, 1973, featuring well-known DC characters Superman, Batman and Robin, Wonder Woman, and Aquaman as part of its Saturday morning cartoon lineup. It was produced by Hanna-Barbera and was based on the Justice League of America (JLA) and associated comic book characters published by DC Comics. The name of the program (and the JLA members featured with the Super Friends) have been variously represented (as Super Friends and Challenge of the Super Friends, for example) at different points in its broadcast history.",
+    originalLanguage: "en",
+    releaseDate: "1980-09-06",
+    image: "/ftKarhxw86BwQR1gYKdhTB8REAz.jpg",
+  },
+  {
+    theMovieDbId: 31428,
+    status: "Ended",
+    name: "Angela and Friends",
+    overview:
+      "Daily chat show, hosted by Angela Griffin, that combines topical debate with five lifestyle clubs: Diet and Health, Beauty, Books and Travel, Entertainment and Fashion. ",
+    originalLanguage: "en",
+    releaseDate: "2009-11-09",
+    image: "/j02elNgo62LETB22E3iGmcgyAMI.jpg",
+  },
+  {
+    theMovieDbId: 1052,
+    status: "Ended",
+    name: "Fat Friends",
+    overview:
+      "Fat Friends was an ITV drama, following a group of overweight people, their laughter and pain and addresses the absurdities of dieting in our modern age. The drama looks at people and how they relate to one another and use body weight as an excuse for all sorts of failings in their relationships, or not living their lives to the full. Four of the cast, Ruth Jones, James Corden, Sheridan Smith and Alison Steadman, went on to appear in Gavin & Stacey.",
+    originalLanguage: "en",
+    releaseDate: "2000-10-12",
+    image: "/3kinwzYngnYmaUGxD0TN2aMpLtJ.jpg",
+  },
+  {
+    theMovieDbId: 70779,
+    status: "Ended",
+    name: "LEGO Friends: The Power of Friendship",
+    overview: "",
+    originalLanguage: "en",
+    releaseDate: "2016-03-04",
+    image: "/7yKAIvZwElfeI3wjtRIMDl2ySHp.jpg",
+  },
+  {
+    theMovieDbId: 116792,
+    status: "Ended",
+    name: "Best Friends",
+    overview: "",
+    originalLanguage: "de",
+    releaseDate: "2010-08-01",
+    image: null,
+  },
+  {
+    theMovieDbId: 33749,
+    status: "Ended",
+    name: "Friends and Heroes",
+    overview:
+      "Friends and Heroes is a Christian children's program that airs on TBN, Smile of a Child TV, and was also shown on BBC TV. The show is both traditionally animated and computer animated. It takes place from 69 - 71 AD. There are three series each of 13 Episodes: Series 1 is set in Alexandria, Egypt; Series 2 in Jerusalem and Series 3 in Rome. The series was created by Brian D. Brown and Eric J. Danenberg, who also worked on The Storykeepers.",
+    originalLanguage: "en",
+    releaseDate: "2007-03-12",
+    image: null,
+  },
+  {
+    theMovieDbId: 10159,
+    status: "Ended",
+    name: "The All-New Super Friends Hour",
+    overview:
+      "The All-New Super Friends Hour is an American animated television series about a team of superheroes which ran from September 10, 1977, to September 2, 1978, on ABC. It was produced by Hanna-Barbera and is based on the Justice League and associated comic book characters published by DC Comics.",
+    originalLanguage: "en",
+    releaseDate: "1977-09-10",
+    image: "/k1RUrHRmx1QjdLIxOJqCte6HGD4.jpg",
+  },
+  {
+    theMovieDbId: 36594,
+    status: "Ended",
+    name: "Friends",
+    overview: "",
+    originalLanguage: "ja",
+    releaseDate: "2000-07-07",
+    image: "/4eB6S5yhcIvPu6xydd6uknLG7TH.jpg",
+  },
+  {
+    theMovieDbId: 43366,
+    status: "Ended",
+    name: "Hello Kitty & Friends",
+    overview:
+      "A series of Japanese direct-to-video animations starring Hello Kitty and other Sanrio characters either in their everyday lives or reenacting famous fairy tales. The series was dubbed into English and complied into a TV series.",
+    originalLanguage: "en",
+    releaseDate: "1991-01-01",
+    image: "/9ESPuFzvfsFpdjMBdccrPmMaQ8A.jpg",
+  },
+  {
+    theMovieDbId: 11838,
+    status: "Ended",
+    name: "Our Friends in the North",
+    overview:
+      "Examines the politics and change across Britain from the Sixties to the Nineties seen through the varying fortunes of four friends.",
+    originalLanguage: "en",
+    releaseDate: "1996-01-15",
+    image: "/xImmi68GbBcetgHocvINFNgnXRB.jpg",
+  },
+];

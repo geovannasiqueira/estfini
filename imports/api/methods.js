@@ -2,6 +2,7 @@ import { Meteor } from "meteor/meteor";
 import fetch from "node-fetch";
 import { MediasCollection } from "./MediasCollection";
 import { UsersRecommendationsCollection } from "./UsersRecommendationsCollection";
+import { theMovieDbMock } from "./mockApiCalls";
 
 const MEDIA_STATUS = { ENDED: "Ended" };
 const MIN_MEDIA_AMOUNT = 10;
@@ -14,8 +15,9 @@ Meteor.methods({
     MediasCollection.insert(
       { ...media, createdAt: new Date() },
       (error, createdMediaId) => {
-        const mediaId = createdMediaId
-          || MediasCollection.findOne({ theMovieDbId: media.theMovieDbId })._id;
+        const mediaId =
+          createdMediaId ||
+          MediasCollection.findOne({ theMovieDbId: media.theMovieDbId })._id;
 
         UsersRecommendationsCollection.insert({
           userId: this.userId,
@@ -38,6 +40,11 @@ Meteor.methods({
   searchTheMovieDb: async function (searchString) {
     if (!this.userId) {
       throw new Meteor.Error("Not authorized.");
+    }
+
+    if (Meteor.isDevelopment) {
+      console.info("Mocking call to searchTheMovieDb method.");
+      return theMovieDbMock;
     }
 
     let mediasThatEnded = [];
@@ -78,9 +85,12 @@ Meteor.methods({
           }
         )
       );
-      mediasThatEnded = [...mediasThatEnded, ...mediasWithStatus.filter(
-        ({ status }) => status === MEDIA_STATUS.ENDED
-      )];
+      mediasThatEnded = [
+        ...mediasThatEnded,
+        ...mediasWithStatus.filter(
+          ({ status }) => status === MEDIA_STATUS.ENDED
+        ),
+      ];
       page += 1;
     }
     return mediasThatEnded;
