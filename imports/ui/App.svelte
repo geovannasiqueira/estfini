@@ -3,6 +3,7 @@
   import { Route, router } from "tinro";
   import Login from "./components/pages/Login.svelte";
   import Home from "./components/pages/Home.svelte";
+  import SignUp from "./components/pages/SignUp.svelte";
   import { Accounts } from "meteor/accounts-base";
 
   let isLogedIn = Meteor.userId();
@@ -27,4 +28,8 @@
 
 <Route path="/login">
   <Login />
+</Route>
+
+<Route path="/signup">
+  <SignUp />
 </Route>
