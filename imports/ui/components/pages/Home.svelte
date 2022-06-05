@@ -6,6 +6,7 @@
   import MediaCard from "../atoms/MediaCard.svelte";
   import Icon from "svelte-icons-pack/Icon.svelte";
   import SeartIcon from "svelte-icons-pack/fa/FaSolidSearch";
+  import { methodCall } from "../../../methodCall";
 
   let FAKE_LOADING_TIME = 1000;
   let medias = [];
@@ -33,10 +34,9 @@
 
   const search = (searchString) => {
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      Meteor.call("searchTheMovieDb", searchString, (error, result) => {
-        medias = result;
-      });
+    debounceTimer = setTimeout(async () => {
+      const result = await methodCall("searchTheMovieDb", searchString);
+      medias = result;
     }, FAKE_LOADING_TIME);
   };
 
