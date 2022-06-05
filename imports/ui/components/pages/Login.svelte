@@ -20,13 +20,14 @@
 </script>
 
 <AlertDanger
-  open={showLoginError}
+  bind:open={showLoginError}
   primaryText="Holy smokes! Something is wrong."
   secondaryText="You better type that credentials right this time."
 />
 
 <div class="w-full h-full flex justify-center items-center bg-gray-200">
-  <div
+  <form
+    on:submit|preventDefault
     class="inline-flex flex-col gap-4 w-96 bg-white p-12 rounded-md shadow-xl"
   >
     <p class="font-extrabold opacity-80 mb-4">LOGIN</p>
@@ -59,7 +60,7 @@
         id="remember"
         class="checkbox checkbox-primary checkbox-xs rounded-sm mr-3"
       />
-      <!-- So guys, this checkbox here does nothing, I'm sorry. That's up to you, peace. -->
+      <!-- TODO: So guys, this checkbox here does nothing, I'm sorry. That's up to you, peace. -->
       <label for="remember"> Remember me? </label>
     </div>
 
@@ -69,5 +70,5 @@
       <p>Don't have an account yet?</p>
       <a class="underline" href="/signup"> Register here </a>
     </div>
-  </div>
+  </form>
 </div>

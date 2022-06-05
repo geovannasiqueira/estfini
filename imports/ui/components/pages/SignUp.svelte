@@ -17,7 +17,8 @@
 </script>
 
 <div class="w-full h-full flex justify-center items-center bg-gray-200">
-  <div
+  <form
+    on:submit|preventDefault
     class="inline-flex flex-col gap-4 w-96 bg-white p-12 rounded-md shadow-xl"
   >
     <p class="font-extrabold opacity-80 mb-4">SIGN UP</p>
@@ -50,5 +51,5 @@
       <p>Do you already have an account?</p>
       <a class="underline" href="/login"> Login here </a>
     </div>
-  </div>
+  </form>
 </div>
