@@ -7,6 +7,9 @@
   import Icon from "svelte-icons-pack/Icon.svelte";
   import SeartIcon from "svelte-icons-pack/fa/FaSolidSearch";
   import { methodCall } from "../../../methodCall";
+  import { UsersRecommendationsCollection } from "../../../api/UsersRecommendationsCollection";
+
+  Meteor.subscribe("home", console.log);
 
   let FAKE_LOADING_TIME = 1000;
   let medias = [];
@@ -18,6 +21,10 @@
     isSearching = true;
     await tick();
     inputElement.focus();
+    const recommend = UsersRecommendationsCollection.find({
+      userId: this.userId,
+    }).fetch();
+    console.log(recommend);
   };
 
   const handleSearchChange = (event) => {

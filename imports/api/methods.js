@@ -42,10 +42,10 @@ Meteor.methods({
       throw new Meteor.Error("Not authorized.");
     }
 
-    if (Meteor.isDevelopment) {
-      console.info("Mocking call to searchTheMovieDb method.");
-      return theMovieDbMock;
-    }
+    // if (Meteor.isDevelopment) {
+    //   console.info("Mocking call to searchTheMovieDb method.");
+    //   return theMovieDbMock;
+    // }
 
     let mediasThatEnded = [];
     let page = 1;
@@ -60,7 +60,7 @@ Meteor.methods({
       const mediasWithStatus = await Promise.all(
         results.map(
           async ({
-            poster_path,
+            backdrop_path,
             id,
             name,
             overview,
@@ -80,7 +80,7 @@ Meteor.methods({
               overview,
               originalLanguage: original_language,
               releaseDate: first_air_date,
-              image: poster_path,
+              image: `https://image.tmdb.org/t/p/w780${backdrop_path}`,
             };
           }
         )
