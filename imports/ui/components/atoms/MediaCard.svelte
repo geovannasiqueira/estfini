@@ -5,24 +5,33 @@
   import { methodCall } from "../../../methodCall";
   import { UsersRecommendationsCollection } from "../../../api/UsersRecommendationsCollection";
   import { MediasCollection } from "../../../api/MediasCollection";
+  import { Tracker } from "meteor/tracker";
 
   export let media = {};
 
-  console.log(media);
+  let isRecommended;
 
-  const handleToggleRecommend = () => {
+  const findUserRecommendation = () => {
     const dbMedia = MediasCollection.findOne({
       theMovieDbId: media.theMovieDbId,
     });
-    const recommendation = UsersRecommendationsCollection.findOne({
-      mediaId: dbMedia._id,
+    return UsersRecommendationsCollection.findOne({
+      mediaId: dbMedia?._id,
     });
+  };
+
+  const handleToggleRecommend = () => {
+    const recommendation = findUserRecommendation();
     if (recommendation) {
-      methodCall("media.unrecommend", dbMedia._id);
+      methodCall("media.unrecommend", recommendation.mediaId);
       return;
     }
     methodCall("media.recommend", media);
   };
+
+  Tracker.autorun(() => {
+    isRecommended = findUserRecommendation();
+  });
 </script>
 
 <div class="card bg-base-100 shadow-xl image-full">
@@ -37,7 +46,11 @@
     <p>{media.overview}</p>
     <div class="card-actions justify-end">
       <button on:click={handleToggleRecommend}>
-        <Icon className="fill-current" size="2em" src={solidHeartIcon} />
+        <Icon
+          className="fill-current"
+          size="2em"
+          src={isRecommended ? solidHeartIcon : heartIcon}
+        />
       </button>
     </div>
   </div>

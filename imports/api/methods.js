@@ -95,4 +95,24 @@ Meteor.methods({
     }
     return mediasThatEnded;
   },
+
+  "usersRecommendations.count": function (mediaIds) {
+    const usersRecommendations = UsersRecommendationsCollection.find({
+      mediaId: { $in: mediaIds }
+    }).fetch();
+
+    const usersRecommendationsByMediaId = usersRecommendations.reduce(
+      (acc, userRec) => ({
+        ...acc,
+        [userRec.mediaId]: [...(acc[userRec.mediaId] || []), userRec]
+      }), {}
+    );
+
+    return mediaIds.map((mediaId) => {
+      return {
+        mediaId,
+        count: usersRecommendationsByMediaId[mediaId]?.length || 0
+      }
+    });
+  }
 });
