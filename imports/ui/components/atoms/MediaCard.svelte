@@ -8,8 +8,12 @@
 
   export let media = {};
 
+  console.log(media);
+
   const handleToggleRecommend = () => {
-    const dbMedia = MediasCollection.findOne({ theMovieDbId: media.theMovieDbId });
+    const dbMedia = MediasCollection.findOne({
+      theMovieDbId: media.theMovieDbId,
+    });
     const recommendation = UsersRecommendationsCollection.findOne({
       mediaId: dbMedia._id,
     });
@@ -19,18 +23,22 @@
     }
     methodCall("media.recommend", media);
   };
-
 </script>
 
-<div class="card bg-base-200 shadow">
-  <div class="card-body flex flex-row items-center space-x-4">
-    <button on:click={handleToggleRecommend}>
-      <Icon className="fill-current" size="2em" src={solidHeartIcon} />
-    </button>
-    <div class="flex flex-col">
-      <p>
-        {media.name}
-      </p>
+<div class="card bg-base-100 shadow-xl image-full">
+  {#if media.image}
+    <figure>
+      <img src={media.image} alt="Shoes" />
+    </figure>
+  {/if}
+
+  <div class="card-body">
+    <h2 class="card-title">{media.name}</h2>
+    <p>{media.overview}</p>
+    <div class="card-actions justify-end">
+      <button on:click={handleToggleRecommend}>
+        <Icon className="fill-current" size="2em" src={solidHeartIcon} />
+      </button>
     </div>
   </div>
 </div>

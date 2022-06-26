@@ -80,7 +80,7 @@ Meteor.methods({
               overview,
               originalLanguage: original_language,
               releaseDate: first_air_date,
-              image: `https://image.tmdb.org/t/p/w780${backdrop_path}`,
+              image: backdrop_path && `https://image.tmdb.org/t/p/w780${backdrop_path}`,
             };
           }
         )
