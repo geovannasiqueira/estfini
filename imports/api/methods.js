@@ -52,7 +52,7 @@ Meteor.methods({
     let totalPages = 1;
     while (mediasThatEnded.length <= MIN_MEDIA_AMOUNT && page <= totalPages) {
       const response = await fetch(
-        `https://api.themoviedb.org/3/search/tv?api_key=${Meteor.settings.theMovieDbApiKey}&language=en-US&page=${page}&query=${searchString}`
+        `https://api.themoviedb.org/3/search/tv?api_key=${process.env.THE_MOVIE_DB_API_KEY}&language=en-US&page=${page}&query=${searchString}`
       );
       const { results, total_pages } = await response.json();
       totalPages = total_pages;
@@ -68,7 +68,7 @@ Meteor.methods({
             first_air_date,
           }) => {
             const { status } = await fetch(
-              `https://api.themoviedb.org/3/tv/${id}?api_key=${Meteor.settings.theMovieDbApiKey}`
+              `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.THE_MOVIE_DB_API_KEY}`
             ).then((res) => {
               return res.json();
             });
@@ -80,7 +80,9 @@ Meteor.methods({
               overview,
               originalLanguage: original_language,
               releaseDate: first_air_date,
-              image: backdrop_path && `https://image.tmdb.org/t/p/w780${backdrop_path}`,
+              image:
+                backdrop_path &&
+                `https://image.tmdb.org/t/p/w780${backdrop_path}`,
             };
           }
         )
@@ -98,21 +100,22 @@ Meteor.methods({
 
   "usersRecommendations.count": function (mediaIds) {
     const usersRecommendations = UsersRecommendationsCollection.find({
-      mediaId: { $in: mediaIds }
+      mediaId: { $in: mediaIds },
     }).fetch();
 
     const usersRecommendationsByMediaId = usersRecommendations.reduce(
       (acc, userRec) => ({
         ...acc,
-        [userRec.mediaId]: [...(acc[userRec.mediaId] || []), userRec]
-      }), {}
+        [userRec.mediaId]: [...(acc[userRec.mediaId] || []), userRec],
+      }),
+      {}
     );
 
     return mediaIds.map((mediaId) => {
       return {
         mediaId,
-        count: usersRecommendationsByMediaId[mediaId]?.length || 0
-      }
+        count: usersRecommendationsByMediaId[mediaId]?.length || 0,
+      };
     });
-  }
+  },
 });
