@@ -37,6 +37,9 @@
 
   const search = (searchString) => {
     clearTimeout(debounceTimer);
+    if (!searchString) {
+      return;
+    }
     debounceTimer = setTimeout(async () => {
       const result = await methodCall("searchTheMovieDb", searchString);
       medias = result;
