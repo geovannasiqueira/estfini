@@ -12,7 +12,8 @@
   Meteor.subscribe("home");
 
   let FAKE_LOADING_TIME = 1000;
-  let medias = [];
+  let dbMedias = [];
+  let searchMedias = [];
   let isSearching = false;
   let inputElement = null;
   let debounceTimer = null;
@@ -31,6 +32,7 @@
   const handleInputBlur = (event) => {
     if (!event.target.value) {
       isSearching = false;
+      searchMedias = [];
       return;
     }
   };
@@ -42,12 +44,12 @@
     }
     debounceTimer = setTimeout(async () => {
       const result = await methodCall("searchTheMovieDb", searchString);
-      medias = result;
+      searchMedias = result;
     }, FAKE_LOADING_TIME);
   };
 
   Tracker.autorun(function () {
-    medias = MediasCollection.find({}).fetch();
+    dbMedias = MediasCollection.find({}).fetch();
   });
 </script>
 
@@ -73,10 +75,18 @@
   </div>
 
   <ul class="space-y-2 p-2">
-    {#each medias as media (media.theMovieDbId)}
-      <li>
-        <MediaCard {media} />
-      </li>
-    {/each}
+    {#if searchMedias.length}
+      {#each searchMedias as media (media.theMovieDbId)}
+        <li>
+          <MediaCard {media} />
+        </li>
+      {/each}
+    {:else}
+      {#each dbMedias as media (media.theMovieDbId)}
+        <li>
+          <MediaCard {media} />
+        </li>
+      {/each}
+    {/if}
   </ul>
 </div>
