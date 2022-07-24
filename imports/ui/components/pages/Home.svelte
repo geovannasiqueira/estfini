@@ -40,7 +40,6 @@
     debounceTimer = setTimeout(async () => {
       const result = await methodCall("searchTheMovieDb", searchString);
       medias = result;
-      console.log(medias);
     }, FAKE_LOADING_TIME);
   };
 

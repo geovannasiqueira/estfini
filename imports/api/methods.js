@@ -43,63 +43,31 @@ Meteor.methods({
       throw new Meteor.Error("Not authorized.");
     }
 
-    // if (Meteor.isDevelopment) {
-    //   console.info("Mocking call to searchTheMovieDb method.");
-    //   return theMovieDbMock;
-    // }
-    console.log(await fetchMedia(searchString));
-    // let mediasThatEnded = [];
-    // let page = 1;
-    // let totalPages = 1;
-    // while (mediasThatEnded.length <= MIN_MEDIA_AMOUNT && page <= totalPages) {
-    //   const { results, total_pages } = Meteor.settings.mockApiCalls
-    //     ? theMovieDbMock
-    //     : await fetch(
-    //         `https://api.themoviedb.org/3/search/tv?api_key=${process.env.THE_MOVIE_DB_API_KEY}&language=en-US&page=${page}&query=${searchString}`
-    //       ).json();
-    //   //console.log(results);
-    //   totalPages = total_pages;
-    //   // TODO: get genres, complete image url
-    //   const mediasWithStatus = await Promise.all(
-    //     results.map(
-    //       async ({
-    //         backdrop_path,
-    //         id,
-    //         name,
-    //         overview,
-    //         original_language,
-    //         first_air_date,
-    //       }) => {
-    //         const { status } = await fetch(
-    //           `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.THE_MOVIE_DB_API_KEY}`
-    //         ).then((res) => {
-    //           return res.json();
-    //         });
-
-    //         return {
-    //           theMovieDbId: id,
-    //           status,
-    //           name,
-    //           overview,
-    //           originalLanguage: original_language,
-    //           releaseDate: first_air_date,
-    //           image:
-    //             backdrop_path &&
-    //             `https://image.tmdb.org/t/p/w780${backdrop_path}`,
-    //         };
-    //       }
-    //     )
-    //   );
-    //   mediasThatEnded = [
-    //     ...mediasThatEnded,
-    //     ...mediasWithStatus.filter(
-    //       ({ status }) => status === MEDIA_STATUS.ENDED
-    //     ),
-    //   ];
-    //   page += 1;
-    // }
-    // console.log(mediasThatEnded);
-    // return mediasThatEnded;
+    const mediaSearchResult = Meteor.settings.mockApiCalls
+      ? theMovieDbMock
+      : await fetchMedia(searchString);
+    return mediaSearchResult.map(
+      ({
+        id,
+        status,
+        name,
+        overview,
+        original_language,
+        first_air_date,
+        backdrop_path,
+      }) => {
+        return {
+          theMovieDbId: id,
+          status,
+          name,
+          overview,
+          originalLanguage: original_language,
+          releaseDate: first_air_date,
+          image:
+            backdrop_path && `https://image.tmdb.org/t/p/w780${backdrop_path}`,
+        };
+      }
+    );
   },
 
   "usersRecommendations.count": function (mediaIds) {

@@ -1,4 +1,4 @@
-[
+export const theMovieDbMock = [
   {
     backdrop_path: "/l0qVZIpXtIo7km9u5Yqh0nKPOr5.jpg",
     first_air_date: "1994-09-22",

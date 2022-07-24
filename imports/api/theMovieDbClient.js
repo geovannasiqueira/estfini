@@ -23,7 +23,7 @@ export const fetchMedia = async (searchString) => {
       })
     );
     medias = [...medias, ...mediasWithStatus];
+    page++;
   }
-  console.log(JSON.stringify(medias));
   return medias;
 };
