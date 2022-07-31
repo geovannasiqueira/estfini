@@ -76,18 +76,20 @@ Meteor.methods({
     }).fetch();
 
     const usersRecommendationsByMediaId = usersRecommendations.reduce(
-      (acc, userRec) => ({
-        ...acc,
-        [userRec.mediaId]: [...(acc[userRec.mediaId] || []), userRec],
-      }),
+      (acc, userRec) => {
+        console.log('Acumulador:', acc);
+        console.log('user rec:', userRec);
+
+        return {
+          ...acc,
+          [userRec.mediaId]: (acc[userRec.mediaId] || 0) + 1,
+        };
+      },
       {}
     );
 
-    return mediaIds.map((mediaId) => {
-      return {
-        mediaId,
-        count: usersRecommendationsByMediaId[mediaId]?.length || 0,
-      };
-    });
+    console.log('BLABLA ', usersRecommendationsByMediaId);
+    return usersRecommendationsByMediaId;
   },
 });
+
